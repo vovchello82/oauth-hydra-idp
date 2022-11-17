@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link type="text/css" href="/idp/static/login.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="login">
+        <div>
+            <img src="static/logo.png" class="logo" />
+        </div>
+        <form method="post" action="/idp/login">
+            {{if .ErrorTitle}}
+            <div class="alert">
+                <p>{{ .ErrorTitle }}</p>
+                {{ .ErrorContent }}
+            </div>
+            {{end}}
+
+            {{if .LoginChallenge}}
+            <input type="hidden" name="login_challenge" value="{{.LoginChallenge}}">
+            {{end}}
+            <input type="text" class="text" id="username" name="username" placeholder="Enter username" required>
+            <span>username</span>
+            <br /><br />
+            <input type="password" class="text" id="password" name="password" placeholder="Enter password" required>
+            <span>password</span>
+            <br />
+            <input type="checkbox" id="checkbox" name="remember" class="custom-checkbox" />
+            <label for="checkbox">Remember</label>
+            <button type="submit" class="signin" name="login">Login</button>
+            <hr>
+        </form>
+    </div>
+</body>
+
+</html>

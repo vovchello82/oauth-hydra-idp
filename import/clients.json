@@ -1,0 +1,19 @@
+{
+    "client_id": "myclient",
+    "client_name": "myapp",
+    "client_secret": "secret",
+    "grant_types": [
+        "authorization_code",
+        "client_credentials",
+        "implicit"
+    ],
+    "redirect_uris": [
+        "http://localhost:3000/callback"
+    ],
+    "response_types": [
+        "token",
+        "code",
+        "id_token"
+    ],
+    "scope": "openid"
+}

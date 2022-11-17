@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link type="text/css" href="/idp/static/login.css" rel="stylesheet" />
+    <title>Consent</title>
+</head>
+
+<body>
+
+    <div class="login">
+        <div>
+            <img src="/idp/static/logo.png" class="logo" />
+        </div>
+        <form method="post" action="/idp/consent">
+            {{if not .ConsentChallenge}}
+            <div class="text-center alert alert-danger" role="alert">
+                <b>{{ .ErrorTitle }}</b>
+                <br>
+                {{ .ErrorContent }}
+            </div>
+            {{end}}
+
+            {{if .ConsentChallenge}}
+            <h1>Authorization</h1>
+            <p>
+                Application <b>{{ .ConsentApp }}</b> requires access to:
+            </p>
+            {{range .RequestedScopes}}
+            <div class="form-check">
+                <input class="custom-checkbox" type="checkbox" name="grant_scope" value="{{.}}" id="{{.}}" checked>
+                <label for="{{.}}">{{.}}</label>
+            </div>
+            {{end}}
+            <input type="hidden" name="consent_challenge" value="{{.ConsentChallenge}}">
+            <button type="submit" class="signin" value="authorize" name="authorize">Authorize</button>
+            <button type="submit" class="signin" value="decline" name="decline">Decline</button>
+            {{end}}
+        </form>
+    </div>
+</body>
+
+</html>

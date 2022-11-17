@@ -1,0 +1,41 @@
+version: '3'
+services:
+  hydra:
+    container_name: hydra
+    image: oryd/hydra:latest
+    environment:
+      - "DSN=memory"
+      - "SECRETS_SYSTEM=0123456789ABCDEF"
+      - "URLS_SELF_ISSUER=https://localhost:4444/"
+      - "URLS_CONSENT=http://localhost:9020/idp/consent"
+      - "URLS_LOGIN=http://localhost:9020/idp/login"
+      - "URLS_ERROR=http://localhost:9020/idp/error"
+#      - "SERVE_TLS_CERT_PATH=/home/ssl/cert.crt"
+#      - "SERVE_TLS_KEY_PATH=/home/ssl/key.pem"
+      - "SERVE_PUBLIC_CORS_ENABLED=true"
+      - LOG_LEVEL=debug
+ #   volumes:
+ #     - ./cert.crt:/home/ssl/cert.crt
+ #     - ./key.pem:/home/ssl/key.pem
+    ports:
+      - "4444:4444"
+      - "4445:4445"
+    command: "serve all"
+
+  identity_provider:
+    image: vzlobins/hydra-id-provider:latest
+    container_name: id_provider
+    depends_on:
+      - hydra
+    volumes:
+      - ../import/:/import/
+    environment:
+      - "HYDRA_ADMIN_URL=https://hydra:4445"
+      - "HYDRA_PUBLIC_URL=https://hydra:4444"
+      - "SKIP_TLS_VERIFY=T"
+    ports:
+      - "9020:3000"
+
+networks:
+  hydra-network:
+    name: hydra-network

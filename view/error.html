@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link type="text/css" href="/idp/static/login.css" rel="stylesheet" />
+    <title>An OAuth error occured </title>
+</head>
+
+<body>
+    <div class="login">
+        <div>
+            <img src="/idp/static/logo.png" class="logo" />
+        </div>
+        {{if .ErrorTitle}}
+        <div class="alert">
+            <h3>Fehler bei der Authorizierung </h3>
+            <p>{{ .ErrorTitle }}</p>
+            {{ .ErrorContent }}
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>
