@@ -6,7 +6,7 @@ Die App spielt für den Hydra oAuth Broker die Rolle eines identity Providers an
 
 hydra-id-provider übernimmt die Registrierung der Clients beim oAuth Broker, falls eine JSON Datei namens clients.json in dem /import exisitert.
 Die Datei kann einfach mit der docker-compose Deklaration ` volumes - [HOST_PATH_TO_JSON]:/import/clients.json` in den Container eingebunden werden. Eine Beispile Datei ist in `/import/clients.json` verfügbar.
-Nach dem selben Prinzip lassen sich auch Cresdentials für Benutzer einbinden. Eine Beispiel Datei ist in `/import/users.json` verfügbar.
+Nach demselben Prinzip lassen sich auch Cresdentials für Benutzer einbinden. Eine Beispieldatei ist in `/import/users.json` verfügbar.
 
 ### ENVS
  - **HYDRA_ADMIN_URL** *Required* Der Hydra Admin Endpoint
