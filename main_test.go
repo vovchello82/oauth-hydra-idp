@@ -134,8 +134,8 @@ func TestImportUsers(t *testing.T) {
 	}
 
 	for _, u := range users {
-		if u.Email != "user@nordlb.de" {
-			if u.Email != "admin@nordlb.de" {
+		if u.Email != "user" {
+			if u.Email != "admin" {
 				log.Println("unexpected user email", u.Email)
 				t.Fail()
 			}
